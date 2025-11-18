@@ -1,8 +1,12 @@
-from fastapi import FastAPI
+from http.client import HTTPException
+
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import List, Dict
 
+
 class Usuario(BaseModel):
+    id: int
     cpf: str
     nome_completo: str
     moeda_capiba: float
@@ -24,8 +28,16 @@ def criar_usuario(usuario: Usuario):
 
 @conectarecife.post("/entrar")
 
+
 @conectarecife.put("/gastar")
 
 
 
-@conectarecife.get("")
+@conectarecife.get("/usuario/{usuario_id}")
+def obter_info(usuario_id: int):
+    info = usuarios_cadastrado.get(usuario_id)
+    
+    if not info:
+        raise HTTPException(status_code=404)
+    
+    return info
