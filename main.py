@@ -28,8 +28,8 @@ def criar_usuario(usuario: Usuario):
 
     usuarios_cadastrado[usuario_id] = novo_usuario
     usuario_id += 1
-    
-    return "Usuario cadastrado"
+
+    return usuarios_cadastrado
 
 
 @conectarecife.post("/entrar")
