@@ -26,6 +26,12 @@ def criar_usuario(usuario: Usuario):
         "moeda_capiba": usuario.moeda_capiba
     }
 
+    usuarios_cadastrado[usuario_id] = novo_usuario
+    usuario_id += 1
+    
+    return "Usuario cadastrado"
+
+
 @conectarecife.post("/entrar")
 
 
@@ -36,8 +42,8 @@ def criar_usuario(usuario: Usuario):
 @conectarecife.get("/usuario/{usuario_id}")
 def obter_info(usuario_id: int):
     info = usuarios_cadastrado.get(usuario_id)
-    
+
     if not info:
         raise HTTPException(status_code=404)
-    
+
     return info
